@@ -13,20 +13,19 @@ import java.util.List;
  *
  * */
 public class NotaFiscalBuilder {
+
     private String razaoSocial;
     private String cnpj;
-    private double valorTotal;
-    private double impostos;
-    private Calendar data;
-    private String observacoes;
 
+    private List<ItemNota> todosItens = new ArrayList<ItemNota>();
     private double valorBruto;
-
-    private List<ItemNota> todosItens = new ArrayList<>();
+    private double impostos;
+    private String observacoes;
+    private Calendar data;
 
     public NotaFiscalBuilder paraEmpresa(String razaoSocial) {
         this.razaoSocial = razaoSocial;
-        return this; // retorno eu mesmo, o próprio builder, para que o cliente continue utilizando
+        return this;
     }
 
     public NotaFiscalBuilder comCnpj(String cnpj) {
@@ -38,12 +37,13 @@ public class NotaFiscalBuilder {
         todosItens.add(item);
         valorBruto += item.getValor();
         impostos += item.getValor() * 0.05;
+
         return this;
     }
 
-    public NotaFiscalBuilder comObservacao(String observacoes){
-
+    public NotaFiscalBuilder comObservacoes(String observacoes) {
         this.observacoes = observacoes;
+
         return this;
     }
 
@@ -56,7 +56,4 @@ public class NotaFiscalBuilder {
     public NotaFiscal constroi() {
         return new NotaFiscal(razaoSocial, cnpj, data, valorBruto, impostos, todosItens, observacoes);
     }
-
-    // código continua aqui com a mesma ideia
-    // substituindo void por NotaFiscalBuilder e retornando this em todos eles...
 }
