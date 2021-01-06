@@ -27,5 +27,10 @@ public class TestaCursoComAluno {
 
         /** o hash map tem uma melhor performance para buscar dados em uma coleção. */
         System.out.println(curso.buscaAlunoMatriculado(34672));
+
+        String teste = "teste";
+
+        boolean teste1 = teste.contains("teste");
+        System.out.println(teste.contains("test"));
     }
 }
