@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**
  * @autor Adriano Rabello 11/01/2021 - 9:26 PM
@@ -67,6 +68,29 @@ public class ComparatorTest2 {
         });
 
         nomes.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
+
+        /** the same */
+        nomes.sort(Comparator.comparing(s -> s.length()));
+        nomes.sort(Comparator.comparing(String::length)); // static method
+
+
+        /** Lambda for default make this code */
+
+        Function<String, Integer> funcao = s -> s.length();
+
+        Comparator<String> comparator = Comparator.comparing(funcao);
+
+        nomes.sort(comparator);
+
+        Consumer<String> impressor = System.out::println;
+
+        nomes.forEach(impressor);
+
+        /***/
+
+        nomes.sort(Comparator.comparing(s -> s.length()));
+
+
     }
 }
 
